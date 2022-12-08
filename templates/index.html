@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+	<!-- product section -->
+	<div class="product-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">	
+						<h3><span class="orange-text">Nuestros</span> Productos</h3>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-4 col-md-6 text-center">
+					{% for i in productos %}
+					<div style="background-color:#9f9f9f" class="single-product-item">
+						<div class="product-image">
+							<a><img src="{{i.img.url}}" alt=""></a>
+						</div>
+						<h3>{{i.nombre}}</h3>
+						<p class="product-price">$ {{i.precio}}</p>
+						{% comment %} <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a> {% endcomment %}
+					</div>
+					{% endfor %}
+			</div>
+		</div>
+	</div>
+	<!-- end product section -->
+
+
+	{% comment %} <a style="position:fixed;bottom: 10px;right: 10px;" class="btn btn-primary" href="{% url 'crear-usuario' %}">➕ Crear Usuario</a>
+	<!-- cart -->
+	<div class="cart-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<h1>Tabla de usuarios</h1>
+						<table class="cart-table">
+							<thead class="cart-table-head">
+								<tr class="table-head-row">
+									<th class="product-name">Nombre</th>
+									<th class="product-name">Apellidos</th>
+									<th class="product-name">Usuario</th>
+									<th class="product-name">Telefono</th>
+									<th class="product-name">Acciones</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for user in usuarios %}
+								<tr class="table-body-row">
+									<td class="product-name">{{user.first_name}}</td>
+									<td class="product-name">{{user.last_name}}</td>
+									<td class="product-name">{{user.username}}</td>
+									<td class="product-name">{{user.telefono}}</td>
+									<td class="product-accion">
+										<a href="{% url 'editar-usuario' user.pk %}" class="btn btn-primary">Editar</a>
+										<a href="{% url 'eliminar-usuario' user.pk %}" class="btn btn-danger">Eliminar</a>
+									</td>
+								</tr>{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+	
+	</div>
+	<!-- end cart --> {% endcomment %}
+
+{% endblock content %}
